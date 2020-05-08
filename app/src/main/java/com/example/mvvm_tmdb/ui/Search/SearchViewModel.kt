@@ -1,32 +1,32 @@
-package com.example.mvvm_tmdb.ui.Now_Play
+package com.example.mvvm_tmdb.ui.Search
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import com.example.mvvm_tmdb.base.BaseViewModel
 import com.example.mvvm_tmdb.model.datamodel.MovieDataModel
-import com.example.mvvm_tmdb.model.response.MovieResponse
+import com.example.mvvm_tmdb.model.response.SearchResponse
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class NowPlayViewModel ( private val model: MovieDataModel) : BaseViewModel(){
+class SearchViewModel ( private val model: MovieDataModel) : BaseViewModel(){
+    private val TAG = "SearchViewModel"
 
-    private val TAG = "MovieViewModel"
+    private val _searchResponseLiveData = MutableLiveData<SearchResponse>()
+    val searchResponseLiveData: LiveData<SearchResponse>
+        get() = _searchResponseLiveData
 
-    private val _movieResponseLiveData = MutableLiveData<MovieResponse>()
-    val movieResponseLiveData: LiveData<MovieResponse>
-        get() = _movieResponseLiveData
 
-    fun getMovieData(api_key:String, language: String, page:Int, region : String) {
-        addDisposable(model.getMovieData(api_key, language, page, region)
+    fun getSearchMovie(api_key:String, language: String, query:String, page:Int, region : String) {
+        addDisposable(model.getSearchData(api_key, language,query, page, region)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ it ->
                 it.run {
                     this.results.forEach {result->
                         Log.d("movieTitle", "$result.title")
-                        _movieResponseLiveData.postValue(this)
+                        _searchResponseLiveData.postValue(this)
                     }
                 }
             }, {
@@ -34,4 +34,10 @@ class NowPlayViewModel ( private val model: MovieDataModel) : BaseViewModel(){
 
             }))
     }
+
+
+
+
+
+
 }

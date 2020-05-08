@@ -1,6 +1,7 @@
 package com.example.mvvm_tmdb.model.service
 
 import com.example.mvvm_tmdb.model.response.MovieResponse
+import com.example.mvvm_tmdb.model.response.SearchResponse
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -15,6 +16,17 @@ interface MovieService {
         @Query("api_key") api_key:String,
         @Query("language") language:String,
         @Query("page") page:Int,
-        @Query("page") page2 : Int
+        @Query("region") region : String
     ): Single<MovieResponse>
+
+    @GET("search/movie")
+    fun getSearchMovie(
+        @Query("api_key") api_key:String,
+        @Query("language") language:String,
+        @Query("query") query:String,
+        @Query("page") page:Int,
+        @Query("region") region : String
+    ): Single<SearchResponse>
+
+
 }

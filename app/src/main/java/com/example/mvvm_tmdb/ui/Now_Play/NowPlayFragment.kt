@@ -1,15 +1,11 @@
 package com.example.mvvm_tmdb.ui.Now_Play
 
 import android.os.Bundle
-import android.view.LayoutInflater
+import android.util.Log
 import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.mvvm_tmdb.R
 import com.example.mvvm_tmdb.adapter.MovieNowPlayAdapter
 import com.example.mvvm_tmdb.base.BaseViewFragment
@@ -18,7 +14,7 @@ import kotlinx.android.synthetic.main.frag_nowplay.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class NowPlayFragment : BaseViewFragment<FragNowplayBinding,NowPlayViewModel>() {
+class NowPlayFragment : BaseViewFragment<FragNowplayBinding, NowPlayViewModel>() {
 
     override val layoutResourceId: Int
         get() = R.layout.frag_nowplay
@@ -32,23 +28,33 @@ class NowPlayFragment : BaseViewFragment<FragNowplayBinding,NowPlayViewModel>() 
             layoutManager = GridLayoutManager(context,2).apply {
                 orientation = GridLayoutManager.VERTICAL
             }
-
-
-            /*layoutManager = StaggeredGridLayoutManager(2,1).apply {
-                gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS
-                orientation = StaggeredGridLayoutManager.VERTICAL
-            }*/
             setHasFixedSize(true)
         }
     }
 
+
+
     override fun initDataBinding() {
         //DataBinding/ obersing/ adapter data add
+        movieNowPlayAdapter.refresh()
 
-        viewModel.movieResponseLiveData.observe(this, Observer {
+        Log.d("databinding 시작 리스트 갯수 ", movieNowPlayAdapter.itemCount.toString())
+
+        viewModel.movieResponseLiveData.observe(viewLifecycleOwner, Observer {
             it.results.forEach {
-                movieNowPlayAdapter.addNowPlayItem(it.title, it.poster_path)
+                movieNowPlayAdapter.addNowPlayItem(
+                    it.adult,
+                    it.backdrop_path,
+                    it.original_language,
+                    it.original_title,
+                    it.overview,
+                    it.poster_path,
+                    it.release_date,
+                    it.title
+                    )
             }
+
+            Log.d("data 부른 후 리스트 갯수 ", movieNowPlayAdapter.itemCount.toString())
             movieNowPlayAdapter.notifyDataSetChanged()
         })
     }
@@ -57,8 +63,18 @@ class NowPlayFragment : BaseViewFragment<FragNowplayBinding,NowPlayViewModel>() 
         //여기서 클릭 리스너 설정
         val API_KEY = "dd3529cb48a78d9d2e775be63596398a"
         val lang : String = "ko-KR"
-        viewModel.getMovieData(API_KEY, lang,1, 2)
+        val region : String = "kr"
+        viewModel.getMovieData(API_KEY, lang,1, region)
     }
+
+
+    override fun onDestroyView() {
+        movieNowPlayAdapter.refresh()
+        Log.d("destroy 리스트 갯수 ", movieNowPlayAdapter.itemCount.toString())
+        viewModel.movieResponseLiveData.removeObservers(viewLifecycleOwner)
+        super.onDestroyView()
+    }
+
 
 
 }

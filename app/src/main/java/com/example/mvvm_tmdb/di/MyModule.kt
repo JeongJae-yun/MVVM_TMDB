@@ -1,10 +1,12 @@
 package com.example.mvvm_tmdb.di
 
 import com.example.mvvm_tmdb.adapter.MovieNowPlayAdapter
+import com.example.mvvm_tmdb.adapter.MovieSearchAdapter
 import com.example.mvvm_tmdb.model.datamodel.MovieDataModel
 import com.example.mvvm_tmdb.model.datamodel.MovieDataModelImpl
 import com.example.mvvm_tmdb.model.service.MovieService
 import com.example.mvvm_tmdb.ui.Now_Play.NowPlayViewModel
+import com.example.mvvm_tmdb.ui.Search.SearchViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -24,7 +26,13 @@ var retrofitMovie = module{
 
 var movieAdapter = module{
     factory {
-        MovieNowPlayAdapter()
+    MovieNowPlayAdapter()
+}
+}
+
+var searchAdapter = module {
+    factory {
+        MovieSearchAdapter()
     }
 }
 
@@ -40,6 +48,12 @@ var viewMovieModel = module{
     }
 }
 
+var viewSearchModel = module {
+    viewModel {
+        SearchViewModel(get())
+    }
+}
+
 
 var myDiModule
-        = listOf(retrofitMovie, movieAdapter,  modelMovie,  viewMovieModel)
+        = listOf(retrofitMovie, movieAdapter,  searchAdapter, modelMovie,  viewMovieModel, viewSearchModel)

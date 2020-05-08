@@ -5,7 +5,7 @@ import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mvvm_tmdb.ui.Now_Play.NowPlayFragment
-import com.example.mvvm_tmdb.ui.dashboard.DashboardFragment
+import com.example.mvvm_tmdb.ui.Search.SearchFragment
 import com.example.mvvm_tmdb.ui.notifications.NotificationsFragment
 import com.example.mvvm_tmdb.util.replace
 
@@ -16,8 +16,8 @@ class MainActivity : AppCompatActivity() {
         NowPlayFragment()
     }
 
-    private val dashboardFragment: DashboardFragment by lazy{
-        DashboardFragment()
+    private val searchFragment: SearchFragment by lazy{
+        SearchFragment()
     }
 
     private val notificationFragment : NotificationsFragment by lazy{
@@ -35,8 +35,8 @@ class MainActivity : AppCompatActivity() {
                 replace(R.id.container, nowplayFragment)
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_dashboard->{
-                replace(R.id.container, dashboardFragment)
+            R.id.navigation_search->{
+                replace(R.id.container, searchFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_notifications->{

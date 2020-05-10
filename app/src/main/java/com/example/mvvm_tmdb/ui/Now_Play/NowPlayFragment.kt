@@ -35,26 +35,10 @@ class NowPlayFragment : BaseViewFragment<FragNowplayBinding, NowPlayViewModel>()
 
 
     override fun initDataBinding() {
-        //DataBinding/ obersing/ adapter data add
-        movieNowPlayAdapter.refresh()
-
-        Log.d("databinding 시작 리스트 갯수 ", movieNowPlayAdapter.itemCount.toString())
-
         viewModel.movieResponseLiveData.observe(viewLifecycleOwner, Observer {
             it.results.forEach {
-                movieNowPlayAdapter.addNowPlayItem(
-                    it.adult,
-                    it.backdrop_path,
-                    it.original_language,
-                    it.original_title,
-                    it.overview,
-                    it.poster_path,
-                    it.release_date,
-                    it.title
-                    )
+                movieNowPlayAdapter.addNowPlayItem(it.id,it.adult, it.backdrop_path, it.original_language, it.original_title, it.overview, it.poster_path, it.release_date, it.title)
             }
-
-            Log.d("data 부른 후 리스트 갯수 ", movieNowPlayAdapter.itemCount.toString())
             movieNowPlayAdapter.notifyDataSetChanged()
         })
     }
@@ -67,13 +51,9 @@ class NowPlayFragment : BaseViewFragment<FragNowplayBinding, NowPlayViewModel>()
         viewModel.getMovieData(API_KEY, lang,1, region)
     }
 
-
-    override fun onDestroyView() {
-        movieNowPlayAdapter.refresh()
-        Log.d("destroy 리스트 갯수 ", movieNowPlayAdapter.itemCount.toString())
-        viewModel.movieResponseLiveData.removeObservers(viewLifecycleOwner)
-        super.onDestroyView()
-    }
+    /*
+    * 496243
+    * */
 
 
 

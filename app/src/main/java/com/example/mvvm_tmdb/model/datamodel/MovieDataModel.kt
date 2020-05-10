@@ -1,5 +1,7 @@
 package com.example.mvvm_tmdb.model.datamodel
 
+import com.example.mvvm_tmdb.model.response.DetailResponse
+import com.example.mvvm_tmdb.model.response.ImageResponse
 import com.example.mvvm_tmdb.model.response.MovieResponse
 import com.example.mvvm_tmdb.model.response.SearchResponse
 import io.reactivex.Single
@@ -9,4 +11,8 @@ interface MovieDataModel {
     fun getMovieData(api_key : String, language : String, page : Int,  region:String) : Single<MovieResponse>
 
     fun getSearchData(api_key : String, language : String, query : String, page: Int, region : String) : Single<SearchResponse>
+
+    fun getImageData(movie_id : Int, api_key : String) : Single<ImageResponse>
+
+    fun getDetail(movie_id : Int, api_key : String, language : String) : Single<DetailResponse>
 }

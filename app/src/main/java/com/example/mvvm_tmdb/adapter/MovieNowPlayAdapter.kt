@@ -4,13 +4,11 @@ import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.mvvm_tmdb.R
 import com.example.mvvm_tmdb.model.data.NowplayItem
-import com.example.mvvm_tmdb.ui.Now_Play.NowPlayFragment
-import com.example.mvvm_tmdb.ui.Now_Play.NowPlay_Detail
+import com.example.mvvm_tmdb.ui.Detail.DetailInfo
 import kotlinx.android.synthetic.main.item_nowplay.view.*
 
 class MovieNowPlayAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -25,6 +23,7 @@ class MovieNowPlayAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         var n_posterPath : String = ""
         var n_releaseDate : String = ""
         var n_title : String = ""
+        var n_id : Int = 0
     }
 
     private val nowplayItemList = ArrayList<NowplayItem>()
@@ -46,15 +45,8 @@ class MovieNowPlayAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     setOnClickListener {
                         //item click시 doc url에 따라 Action View 넘겨줌
                         Log.d("MovieNowPlayAdapter", "${item.title} 클릭됨")
-                        val intent = Intent(context, NowPlay_Detail::class.java)
-                        intent.putExtra("adult","${item.adult}")
-                        intent.putExtra("backdropPath", item.backdrop_path)
-                        intent.putExtra("originalLanguage", item.original_language)
-                        intent.putExtra("originalTitle",item.original_title)
-                        intent.putExtra("overview",item.overview)
-                        intent.putExtra("title",item.title)
-                        intent.putExtra("releaseDate",item.release_date)
-                        intent.putExtra("posterPath",item.poster_path)
+                        val intent = Intent(context, DetailInfo::class.java)
+                        intent.putExtra("id",item.id)
                         context.startActivity(intent)
                     }
                 }
@@ -78,6 +70,7 @@ class MovieNowPlayAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     fun addNowPlayItem(
+        id : Int?,
         adult: Boolean?,
         backdropPath: String?,
         originalLanguage: String?,
@@ -87,6 +80,7 @@ class MovieNowPlayAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         releaseDate: String?,
         title: String?
     ) {
+        id?.let { n_id = id }
         adult?.let { n_adult = adult }
         backdropPath?.let { n_backdropPath = backdropPath }
         originalLanguage?.let { n_oLanguage = originalLanguage }
@@ -97,7 +91,7 @@ class MovieNowPlayAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         title?.let{ n_title = title}
 
         nowplayItemList.add(
-            NowplayItem(n_adult,n_backdropPath,n_oLanguage,n_oTitle,n_overview,n_posterPath,n_releaseDate,n_title)
+            NowplayItem(n_id,n_adult,n_backdropPath,n_oLanguage,n_oTitle,n_overview,n_posterPath,n_releaseDate,n_title)
         )
     }
 

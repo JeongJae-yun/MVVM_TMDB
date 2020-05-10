@@ -33,7 +33,10 @@ abstract class BaseViewFragment<T : ViewDataBinding, R : BaseViewModel> : Fragme
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewDataBinding = DataBindingUtil.inflate(inflater,layoutResourceId, container, false)
         val view = viewDataBinding.root
+
         return view
+
+
     }
 
 }

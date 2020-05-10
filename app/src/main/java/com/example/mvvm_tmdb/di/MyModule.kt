@@ -1,10 +1,12 @@
 package com.example.mvvm_tmdb.di
 
+import com.example.mvvm_tmdb.adapter.ImageAdapter
 import com.example.mvvm_tmdb.adapter.MovieNowPlayAdapter
 import com.example.mvvm_tmdb.adapter.MovieSearchAdapter
 import com.example.mvvm_tmdb.model.datamodel.MovieDataModel
 import com.example.mvvm_tmdb.model.datamodel.MovieDataModelImpl
 import com.example.mvvm_tmdb.model.service.MovieService
+import com.example.mvvm_tmdb.ui.DetailImage.ImageViewModel
 import com.example.mvvm_tmdb.ui.Now_Play.NowPlayViewModel
 import com.example.mvvm_tmdb.ui.Search.SearchViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -24,36 +26,21 @@ var retrofitMovie = module{
     }
 }
 
-var movieAdapter = module{
-    factory {
-    MovieNowPlayAdapter()
-}
-}
-
-var searchAdapter = module {
-    factory {
-        MovieSearchAdapter()
-    }
+var Adapter = module{
+    factory { MovieNowPlayAdapter() }
+    factory { MovieSearchAdapter() }
+    factory { ImageAdapter() }
 }
 
-var modelMovie = module {
-    factory<MovieDataModel>{
-        MovieDataModelImpl(get())
-    }
+var dataModel = module {
+    factory<MovieDataModel>{ MovieDataModelImpl(get()) }
 }
 
-var viewMovieModel = module{
-    viewModel {
-        NowPlayViewModel(get())
-    }
+var viewModelPart = module{
+    viewModel { NowPlayViewModel(get()) }
+    viewModel { SearchViewModel(get()) }
+    viewModel { ImageViewModel(get()) }
 }
-
-var viewSearchModel = module {
-    viewModel {
-        SearchViewModel(get())
-    }
-}
-
 
 var myDiModule
-        = listOf(retrofitMovie, movieAdapter,  searchAdapter, modelMovie,  viewMovieModel, viewSearchModel)
+        = listOf(retrofitMovie, Adapter, dataModel, viewModelPart)

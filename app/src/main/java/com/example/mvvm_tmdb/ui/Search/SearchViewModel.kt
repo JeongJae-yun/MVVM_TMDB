@@ -35,9 +35,4 @@ class SearchViewModel ( private val model: MovieDataModel) : BaseViewModel(){
             }))
     }
 
-
-
-
-
-
 }

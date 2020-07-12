@@ -10,7 +10,7 @@ import com.example.mvvm_tmdb.model.response.MovieResponse
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class NowPlayViewModel ( private val model: MovieDataModel) : BaseViewModel(){
+class NowPlayViewModel (private val model: MovieDataModel) : BaseViewModel(){
 
     private val TAG = "MovieViewModel"
 

@@ -11,6 +11,9 @@ class util() {
         return "https://image.tmdb.org/t/p/w500$url"
     }
 
+    /*https://image.tmdb.org/t/p/w500/isZPu087RDqQaNqJ8t0khk0nGDm.jpg*/
+
+
     fun cutWordLimit(txt : String) : String {
         var t = ""
         val s = txt.length

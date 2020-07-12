@@ -4,19 +4,19 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.mvvm_tmdb.base.AnBaseViewModel
 import com.example.mvvm_tmdb.base.BaseViewModel
 import com.example.mvvm_tmdb.model.datamodel.MovieDataModel
 import com.example.mvvm_tmdb.model.response.SearchResponse
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class SearchViewModel ( private val model: MovieDataModel) : BaseViewModel(){
+class SearchViewModel ( private val model: MovieDataModel) : AnBaseViewModel(){
     private val TAG = "SearchViewModel"
 
     private val _searchResponseLiveData = MutableLiveData<SearchResponse>()
     val searchResponseLiveData: LiveData<SearchResponse>
         get() = _searchResponseLiveData
-
 
     fun getSearchMovie(api_key:String, language: String, query:String, page:Int, region : String) {
         addDisposable(model.getSearchData(api_key, language,query, page, region)
@@ -34,5 +34,4 @@ class SearchViewModel ( private val model: MovieDataModel) : BaseViewModel(){
 
             }))
     }
-
 }

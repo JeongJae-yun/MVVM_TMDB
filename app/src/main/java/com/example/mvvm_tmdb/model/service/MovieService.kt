@@ -13,7 +13,7 @@ import retrofit2.http.Query
 
 interface MovieService {
 
-    //https://api.themoviedb.org/3/movie/now_playing?api_key=dd3529cb48a78d9d2e775be63596398a&language=ko-KR&page=1&page=2
+    //https://api.themoviedb.org/3/movie/now_playing?api_key=84301bd818cef2f63643e7dffa8998ab&language=ko-KR&page=1&page=2
 
     @GET("movie/now_playing")
     fun getNowMovie(
@@ -38,7 +38,7 @@ interface MovieService {
         @Query("api_key") api_key: String
     ): Single<ImageResponse>
 
-    @GET("movie/{movie_id")
+    @GET("movie/{movie_id}")
     fun getDetail(
         @Path("movie_id") movie_id : Int,
         @Query("api_key") api_key:String,

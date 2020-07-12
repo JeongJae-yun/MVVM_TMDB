@@ -35,6 +35,7 @@ class MovieNowPlayAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             itemView.run {
                 item_nowplay_view.run {
                     val urls = util.changeNowMovieUrl(item.poster_path)
+                    Log.d("IMG PATH DATA ",urls)
 
                     Glide.with(this)
                         .load(urls)

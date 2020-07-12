@@ -6,7 +6,9 @@ import com.example.mvvm_tmdb.adapter.MovieSearchAdapter
 import com.example.mvvm_tmdb.model.datamodel.MovieDataModel
 import com.example.mvvm_tmdb.model.datamodel.MovieDataModelImpl
 import com.example.mvvm_tmdb.model.service.MovieService
-import com.example.mvvm_tmdb.ui.DetailImage.ImageViewModel
+import com.example.mvvm_tmdb.ui.Detail.DetailViewModel
+
+import com.example.mvvm_tmdb.ui.ImageSearch.ImageViewModel
 import com.example.mvvm_tmdb.ui.Now_Play.NowPlayViewModel
 import com.example.mvvm_tmdb.ui.Search.SearchViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -40,6 +42,7 @@ var viewModelPart = module{
     viewModel { NowPlayViewModel(get()) }
     viewModel { SearchViewModel(get()) }
     viewModel { ImageViewModel(get()) }
+    viewModel { DetailViewModel(get()) }
 }
 
 var myDiModule

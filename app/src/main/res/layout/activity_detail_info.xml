@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.Detail.DetailInfo">
+
+            <FrameLayout
+                android:id="@+id/detailFrame"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/detailLinear">
+
+                <ImageView
+                    android:id="@+id/ivBackDrop"
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:layout_height="match_parent" />
+
+                <ImageView
+                    android:id="@+id/ivMainPoster"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/phimg"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="13dp"
+                    android:layout_marginBottom="13dp"
+                    />
+            </FrameLayout>
+
+
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:id="@+id/detailLinear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:id="@+id/tvTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="TITLE"
+                        android:textColor="@color/white"
+                        android:textSize="17sp"
+                        android:layout_margin="5dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/tvReleaseDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="RELEASE DATE"
+                        android:textColor="@color/white"
+                        android:textSize="17sp"
+                        android:layout_margin="5dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/tvOverview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="OVERVIEW"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:layout_margin="5dp"
+                        />
+
+
+                    <TextView
+                        android:id="@+id/tvGenre"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GENRE | ACTION | ROMANCE"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:layout_margin="5dp"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/detailLinear2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/detailLinear"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:orientation="vertical"
+                    >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="MORE INFOMATION"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginTop="10dp"
+                        />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="성인 관람 가능 여부 : "
+                            android:textColor="@color/white"
+                            android:layout_weight="0.3"
+                            android:textSize="17sp"
+                            android:layout_margin="5dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/tvNowAdult"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="TRUE|FALSE"
+                            android:textColor="@color/white"
+                            android:layout_weight="0.7"
+                            android:textSize="17sp"
+                            android:layout_margin="5dp"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="상영 시간 : "
+                            android:textColor="@color/white"
+                            android:layout_weight="0.3"
+                            android:textSize="17sp"
+                            android:layout_margin="5dp"
+                            />
+
+
+
+                        <TextView
+                            android:id="@+id/tvRuntime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="RUNNING TIME"
+                            android:textColor="@color/white"
+                            android:layout_weight="0.7"
+                            android:textSize="17sp"
+                            android:layout_margin="5dp"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="평균 별점 및 투표수 : "
+                            android:textColor="@color/white"
+                            android:layout_weight="0.3"
+                            android:textSize="17sp"
+                            android:layout_margin="5dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/tvVoteAverage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Vote AVERAGE"
+                            android:textColor="@color/white"
+                            android:layout_weight="0.35"
+                            android:textSize="17sp"
+                            android:layout_margin="5dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/tvVoteCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Vote Count"
+                            android:textColor="@color/white"
+                            android:layout_weight="0.35"
+                            android:textSize="17sp"
+                            android:layout_margin="5dp"
+                            />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btnMoreImage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:text="관련 이미지 더보기"/>
+
+                        <Button
+                            android:id="@+id/btnAddFavorite"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:text="내 최애로 추가하기"/>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</layout>

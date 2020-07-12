@@ -20,8 +20,6 @@ open class BaseViewModel : ViewModel(){
         compositeDisposable.add(disposable) //Observable들을 추가
     }
 
-
-
     override fun onCleared() {
         compositeDisposable.dispose()
         super.onCleared()

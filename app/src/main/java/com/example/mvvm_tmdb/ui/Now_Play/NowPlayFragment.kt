@@ -18,6 +18,7 @@ class NowPlayFragment : BaseViewFragment<FragNowplayBinding, NowPlayViewModel>()
 
     override val layoutResourceId: Int
         get() = R.layout.frag_nowplay
+
     override val viewModel: NowPlayViewModel by viewModel()
 
     private val movieNowPlayAdapter : MovieNowPlayAdapter by inject()
@@ -35,6 +36,7 @@ class NowPlayFragment : BaseViewFragment<FragNowplayBinding, NowPlayViewModel>()
 
 
     override fun initDataBinding() {
+        movieNowPlayAdapter.refresh()
         viewModel.movieResponseLiveData.observe(viewLifecycleOwner, Observer {
             it.results.forEach {
                 movieNowPlayAdapter.addNowPlayItem(it.id,it.adult, it.backdrop_path, it.original_language, it.original_title, it.overview, it.poster_path, it.release_date, it.title)
@@ -45,7 +47,7 @@ class NowPlayFragment : BaseViewFragment<FragNowplayBinding, NowPlayViewModel>()
 
     override fun initAfterBinding() {
         //여기서 클릭 리스너 설정
-        val API_KEY = "dd3529cb48a78d9d2e775be63596398a"
+        val API_KEY = "84301bd818cef2f63643e7dffa8998ab"
         val lang : String = "ko-KR"
         val region : String = "kr"
         viewModel.getMovieData(API_KEY, lang,1, region)
